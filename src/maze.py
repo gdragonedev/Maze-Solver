@@ -52,14 +52,22 @@ class Maze:
         y1 = self._y1 + j * self._cell_size_y
         x2 = x1 + self._cell_size_x
         y2 = y1 + self._cell_size_y
+        draw_speed = "Fast"
         self._cells[i][j].draw(x1, y1, x2, y2)
-        self._animate()
+        self._animate(draw_speed)
 
-    def _animate(self):
+    def _animate(self, draw_speed):
         if self._win is None:
             return
         self._win.redraw()
-        time.sleep(0.005)
+        match draw_speed:
+            case "Slow":
+                sleep_time = 0.08
+            case "Fast":
+                sleep_time = 0.008
+            case _:
+                sleep_time = 0.005
+        time.sleep(sleep_time)
 
     def _break_entrance_and_exit(self):
         self._cells[0][0].has_top_wall = False
@@ -122,7 +130,8 @@ class Maze:
     #returns True if this is the end cell, OR if the current path hasn't been proven to be incorrect
     #returns False if current cell cannot be part of solution path
     def _solve_r(self, i, j):
-        self._animate()
+        draw_speed = "Slow"
+        self._animate(draw_speed)
 
         #mark current as visited
         self._cells[i][j].visited = True

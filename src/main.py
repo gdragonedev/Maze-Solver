@@ -3,11 +3,11 @@ from maze import Maze
 import sys
 
 def main():
-    num_rows = 30
-    num_cols = 54
+    num_rows = 18
+    num_cols = 24
     margin = 50
-    screen_x = 2540
-    screen_y = 1400
+    screen_x = 1200
+    screen_y = 900
     cell_size_x = (screen_x - 2 * margin) / num_cols
     cell_size_y = (screen_y - 2 * margin) / num_rows
     sys.setrecursionlimit(10000)
